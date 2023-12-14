@@ -20,5 +20,5 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Neovim
-export NVIM_APPNAME=nvim-vanilla
+# export NVIM_APPNAME=nvim
 
