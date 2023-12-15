@@ -70,6 +70,15 @@ return {
     end
   },
   {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    config = function()
+      require('ibl').setup({
+        indent = { highlight = highlight, char = "▏" },
+      })
+    end
+  },
+  {
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
