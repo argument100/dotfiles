@@ -166,6 +166,7 @@ return {
             set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
             set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
             set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+            set('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
             set("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
             set("n", "gn", "<cmd>lua vim.lsp.buf.rename()<CR>")
             set("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
@@ -192,31 +193,34 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
       'onsails/lspkind.nvim',
+      'saadparwaiz1/cmp_luasnip',
     },
     config = function()
-      -- 3. completion (hrsh7th/nvim-cmp)
       -- Lspkindのrequire
       local lspkind = require 'lspkind'
       --補完関係の設定
       local cmp = require("cmp")
+      local luasnip = require('luasnip')
       cmp.setup({
-        snippet = {
-          expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
-          end,
-        },
         sources = {
           { name = "nvim_lsp" },--ソース類を設定
           { name = "buffer" },
           { name = "path" },
+          { name = "luasnip" },
+        },
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-p>"] = cmp.mapping.select_prev_item(), --Ctrl+pで補完欄を一つ上に移動
           ["<C-n>"] = cmp.mapping.select_next_item(), --Ctrl+nで補完欄を一つ下に移動
-          ['<C-l>'] = cmp.mapping.complete(),
+          ['<C-s>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
-          ["<C-y>"] = cmp.mapping.confirm({ select = true }),--Ctrl+yで補完を選択確定
+          ["<C-a>"] = cmp.mapping.confirm({ select = true }),--Ctrl+yで補完を選択確定
         }),
         experimental = {
           ghost_text = false,
@@ -246,6 +250,13 @@ return {
         },
       })
     end
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp"
   },
   require "plugins.telescope",
 
