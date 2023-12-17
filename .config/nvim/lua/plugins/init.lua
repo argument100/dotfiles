@@ -265,6 +265,16 @@ return {
     -- install jsregexp (optional!).
     build = "make install_jsregexp"
   },
+  {
+    "j-hui/fidget.nvim",
+    config = function ()
+      require('fidget').setup {
+        text = {
+          spinner = 'meter',
+        },
+      }
+    end
+  },
   require "plugins.telescope",
 
 }
