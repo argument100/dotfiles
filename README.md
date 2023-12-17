@@ -7,6 +7,7 @@
 - brew install neovim
 - brew install ripgrep
 - brew install fd
+- brew install fzf
 
 ### create symbolic links
 - ln -s ~/dotfiles/.zshrc ~
