@@ -48,6 +48,12 @@ return {
     end
   },
   {
+    'RRethy/vim-illuminate',
+    config = function()
+      require('lualine').setup()
+    end
+  },
+  {
     'mvllow/modes.nvim',
     tag = 'v0.2.0',
     config = function()
@@ -59,6 +65,7 @@ return {
           visual = '#DD5522',
         },
 
+        set_cursor = false,
         -- Set opacity for cursorline and number background
         line_opacity = 0.35,
 
