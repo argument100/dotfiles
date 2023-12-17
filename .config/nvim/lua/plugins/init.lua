@@ -153,8 +153,20 @@ return {
       { "williamboman/mason.nvim" },
       { "neovim/nvim-lspconfig" },
       { "hrsh7th/nvim-cmp" },
+      { 'nvimdev/lspsaga.nvim' },
     },
     config = function()
+      require("lspsaga").setup({
+        symbol_in_winbar = {
+          enable = false,
+        },
+        ui = {
+          border = "single",
+        },
+        lightbulb = {
+          enable = false,
+        },
+      })
       require("mason-lspconfig").setup()
       require("mason-lspconfig").setup_handlers {
         function (server_name) -- default handler (optional)
@@ -181,7 +193,18 @@ return {
             set("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
             set("n", "g]", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
             set("n", "g[", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
+
+            set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+            set("n", "<leader>1", "<cmd>Lspsaga finder<CR>")
+            set("n", "<leader>2", "<cmd>Lspsaga rename<CR>")
+            set("n", "<leader>3", "<cmd>Lspsaga code_action<CR>")
+            set("n", "<leader>4", "<cmd>Lspsaga show_line_diagnostics<CR>")
+            set("n", "<leader>5", "<cmd>Lspsaga peek_definition<CR>")
+            set("n", "<leader>[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+            set("n", "<leaaer>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
           end
+          vim.lsp.handlers["textDocument/publishDiagnostics"] =
+            vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
 
           -- 補完プラグインであるcmp_nvim_lspをLSPと連携
           local capabilities = require("cmp_nvim_lsp").default_capabilities()
