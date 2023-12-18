@@ -304,7 +304,10 @@ return {
     config = function ()
       require("toggleterm").setup{
         open_mapping = [[<A-i>]],
-        direction = 'float'
+        direction = 'float',
+        float_opts = {
+          border = 'double',
+        }
       }
     end
   },
