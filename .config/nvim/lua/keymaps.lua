@@ -37,14 +37,14 @@ vim.keymap.set('n', '<leader>rn', '<cmd> set rnu! <CR>')
   ====================
    nvim.tree
   ====================
---]] 
+--]]
 vim.keymap.set('n', '<C-n>', '<cmd>NvimTreeToggle<CR>')
 
 --[[
   ====================
    Comment.nvim
   ====================
---]] 
+--]]
 map('n', '<C-/>', 'gcc', {})
 map('v', '<C-/>', 'gc', {})
 
@@ -52,7 +52,7 @@ map('v', '<C-/>', 'gc', {})
   ====================
    barbar.nvim
   ====================
---]] 
+--]]
 
 -- Move to previous/next
 map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
