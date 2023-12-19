@@ -1,26 +1,26 @@
 return {
   require "plugins.dashboard",
   { -- colorscheme
-    'Mofiqul/dracula.nvim',
+    "Mofiqul/dracula.nvim",
     config = function()
       vim.cmd([[colorscheme dracula-soft]])
     end
   },
-  'editorconfig/editorconfig-vim',
+  "editorconfig/editorconfig-vim",
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require('lualine').setup({
+      require("lualine").setup({
         options = {
-          theme = 'dracula-nvim'
+          theme = "dracula-nvim"
         },
         sections = {
           lualine_c = {
             {
-              'filename',
+              "filename",
               path = 3,
-              'searchcount',
+              "searchcount",
             }
           },
         },
@@ -28,21 +28,21 @@ return {
     end
   },
   {
-    'RRethy/vim-illuminate',
+    "RRethy/vim-illuminate",
     config = function()
-      require('lualine').setup()
+      require("lualine").setup()
     end
   },
   {
-    'mvllow/modes.nvim',
-    tag = 'v0.2.0',
+    "mvllow/modes.nvim",
+    tag = "v0.2.0",
     config = function()
-      require('modes').setup({
+      require("modes").setup({
         colors = {
-          copy = '#FFEE55',
-          delete = '#DC669B',
-          insert = '#55AAEE',
-          visual = '#DD5522',
+          copy = "#FFEE55",
+          delete = "#DC669B",
+          insert = "#55AAEE",
+          visual = "#DD5522",
         },
 
         set_cursor = false,
@@ -51,7 +51,7 @@ return {
 
         -- Disable modes highlights in specified filetypes
         -- Please PR commonly ignored filetypes
-        ignore_filetypes = { 'NvimTree', 'TelescopePrompt' }
+        ignore_filetypes = { "NvimTree", "TelescopePrompt" }
       })
     end
   },
@@ -59,21 +59,21 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     config = function()
-      require('ibl').setup({
+      require("ibl").setup({
         indent = { char = "▏" },
       })
     end
   },
   {
-    'lewis6991/gitsigns.nvim',
+    "lewis6991/gitsigns.nvim",
     config = function()
-      require('gitsigns').setup()
+      require("gitsigns").setup()
     end
   },
   {
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
     config = function()
-        require('Comment').setup()
+        require("Comment").setup()
     end
   },
   {
@@ -88,15 +88,15 @@ return {
     end,
   },
   {
-    'windwp/nvim-autopairs',
+    "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {} -- this is equalent to setup({}) function
   },
   {
-    'romgrk/barbar.nvim',
+    "romgrk/barbar.nvim",
     dependencies = {
-      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+      "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+      "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
     },
     init = function() vim.g.barbar_auto_setup = false end,
     opts = {
@@ -105,7 +105,7 @@ return {
       -- insert_at_start = true,
       -- …etc.
     },
-    version = '^1.0.0', -- optional: only update when a new 1.x version is released
+    version = "^1.0.0", -- optional: only update when a new 1.x version is released
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -122,7 +122,7 @@ return {
     end
   },
   {
-    'williamboman/mason.nvim',
+    "williamboman/mason.nvim",
     config = function()
       require("mason").setup()
     end
@@ -133,7 +133,7 @@ return {
       { "williamboman/mason.nvim" },
       { "neovim/nvim-lspconfig" },
       { "hrsh7th/nvim-cmp" },
-      { 'nvimdev/lspsaga.nvim' },
+      { "nvimdev/lspsaga.nvim" },
     },
     config = function()
       require("lspsaga").setup({
@@ -162,10 +162,10 @@ return {
             local set = vim.keymap.set
             set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
             set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-            set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+            set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
             set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
-            set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-            set('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+            set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+            set("n", "gf", "<cmd>lua vim.lsp.buf.formatting()<CR>")
             set("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
             set("n", "gn", "<cmd>lua vim.lsp.buf.rename()<CR>")
             set("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
@@ -198,21 +198,21 @@ return {
     end
   },
   {
-    'hrsh7th/nvim-cmp',
+    "hrsh7th/nvim-cmp",
     dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'onsails/lspkind.nvim',
-      'saadparwaiz1/cmp_luasnip',
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "onsails/lspkind.nvim",
+      "saadparwaiz1/cmp_luasnip",
     },
     config = function()
       -- Lspkindのrequire
-      local lspkind = require 'lspkind'
+      local lspkind = require "lspkind"
       --補完関係の設定
       local cmp = require("cmp")
-      local luasnip = require('luasnip')
+      local luasnip = require("luasnip")
       cmp.setup({
         sources = {
           { name = "nvim_lsp" },--ソース類を設定
@@ -228,8 +228,8 @@ return {
         mapping = cmp.mapping.preset.insert({
           ["<C-p>"] = cmp.mapping.select_prev_item(), --Ctrl+pで補完欄を一つ上に移動
           ["<C-n>"] = cmp.mapping.select_next_item(), --Ctrl+nで補完欄を一つ下に移動
-          ['<C-s>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.abort(),
+          ["<C-s>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
           ["<C-a>"] = cmp.mapping.confirm({ select = true }),--Ctrl+yで補完を選択確定
         }),
         experimental = {
@@ -238,19 +238,19 @@ return {
         -- Lspkind(アイコン)を設定
         formatting = {
           format = lspkind.cmp_format({
-            mode = 'symbol', -- show only symbol annotations
+            mode = "symbol", -- show only symbol annotations
             maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
             -- The function below will be called before any actual modifications from lspkind
             -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
           })
         }
       })
 
-      cmp.setup.cmdline('/', {
+      cmp.setup.cmdline("/", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
-          { name = 'buffer' } --ソース類を設定
+          { name = "buffer" } --ソース類を設定
         }
       })
       cmp.setup.cmdline(":", {
@@ -271,22 +271,22 @@ return {
   {
     "j-hui/fidget.nvim",
     config = function ()
-      require('fidget').setup {
+      require("fidget").setup {
         text = {
-          spinner = 'meter',
+          spinner = "meter",
         },
       }
     end
   },
   {
-    'akinsho/toggleterm.nvim',
+    "akinsho/toggleterm.nvim",
     version = "*",
     config = function ()
       require("toggleterm").setup{
         open_mapping = [[<A-i>]],
-        direction = 'float',
+        direction = "float",
         float_opts = {
-          border = 'double',
+          border = "double",
         }
       }
     end

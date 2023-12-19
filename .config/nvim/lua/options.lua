@@ -1,6 +1,6 @@
 -- encoding
-vim.o.encofing = 'utf-8'
-vim.scriptencoding = 'utf-8'
+vim.o.encofing = "utf-8"
+vim.scriptencoding = "utf-8"
 
 -- ファイル
 vim.opt.fileencoding = "utf-8" -- エンコーディングをUTF-8に設定
@@ -10,24 +10,24 @@ vim.opt.hidden = true -- バッファを切り替えるときに
                       --ファイルを保存しなくてもOKに
 
 -- lang
--- vim.cmd('language en_US.utf8') -- 表示言語を英語にする（Linux）
--- vim.cmd('language en_US') -- 表示言語を英語にする（Mac）
+-- vim.cmd("language en_US.utf8") -- 表示言語を英語にする（Linux）
+-- vim.cmd("language en_US") -- 表示言語を英語にする（Mac）
 
 -- visual
--- vim.o.ambiwidth = 'double'
+-- vim.o.ambiwidth = "double"
 
 -- search
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.api.nvim_set_keymap('n', '<Esc><Esc>', ':nohl<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Esc><Esc>", ":nohl<CR>", { noremap = true, silent = true})
 
 -- manipulation
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 vim.o.ttimeout = true
 vim.o.ttimeoutlen = 50
 
 vim.o.undofile = true
-vim.o.undodir = vim.fn.stdpath('cache') .. '/undo'
+vim.o.undodir = vim.fn.stdpath("cache") .. "/undo"
 
 -- クリップボード共有
 vim.opt.clipboard:append({ "unnamedplus" }) -- レジスタとクリップボードを共有
