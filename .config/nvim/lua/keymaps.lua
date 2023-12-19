@@ -1,3 +1,4 @@
+local set = vim.keymap.set
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
@@ -10,30 +11,30 @@ map("n", "gk", "k", { noremap = true })
 map("i", "<C-c>", "<ESC>", { noremap = true })
 
 -- navigate within insert mode
-vim.keymap.set("i", "<C-h>", "<Left>")
-vim.keymap.set("i", "<C-l>", "<Right>")
-vim.keymap.set("i", "<C-j>", "<Down>")
-vim.keymap.set("i", "<C-k>", "<Up>")
+set("i", "<C-h>", "<Left>")
+set("i", "<C-l>", "<Right>")
+set("i", "<C-j>", "<Down>")
+set("i", "<C-k>", "<Up>")
 
 -- switch between windows
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
+set("n", "<C-h>", "<C-w>h")
+set("n", "<C-l>", "<C-w>l")
+set("n", "<C-j>", "<C-w>j")
+set("n", "<C-k>", "<C-w>k")
 
 -- move lines
-vim.keymap.set("v", "J", ":move '>+1<CR>gv-gv")
-vim.keymap.set("v", "K", ":move '<-2<CR>gv-gv")
+set("v", "J", ":move '>+1<CR>gv-gv")
+set("v", "K", ":move '<-2<CR>gv-gv")
 
 -- save
-vim.keymap.set("n", "<C-s>", "<cmd> w <CR>")
+set("n", "<C-s>", "<cmd> w <CR>")
 
 -- line numbers
-vim.keymap.set("n", "<leader>n", "<cmd> set nu! <CR>")
-vim.keymap.set("n", "<leader>rn", "<cmd> set rnu! <CR>")
+set("n", "<leader>n", "<cmd> set nu! <CR>")
+set("n", "<leader>rn", "<cmd> set rnu! <CR>")
 
 -- LSP
-vim.keymap.set("n", "<C-i>", "<cmd>LspInfo<CR>")
+set("n", "<C-i>", "<cmd>LspInfo<CR>")
 
 
 --[[
@@ -41,7 +42,7 @@ vim.keymap.set("n", "<C-i>", "<cmd>LspInfo<CR>")
    nvim.tree
   ====================
 --]]
-vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>")
+set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>")
 
 --[[
   ====================
