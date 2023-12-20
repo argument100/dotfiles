@@ -79,6 +79,7 @@ map("n", "<A-0>", "<Cmd>BufferLast<CR>", opts)
 map("n", "<A-p>", "<Cmd>BufferPin<CR>", opts)
 -- Close buffer
 map("n", "<A-c>", "<Cmd>BufferClose<CR>", opts)
+map("n", "<leader>x", "<Cmd>BufferClose<CR>", opts)
 -- Wipeout buffer
 --                 :BufferWipeout
 -- Close commands
@@ -94,8 +95,6 @@ map("n", "<Space>bb", "<Cmd>BufferOrderByBufferNumber<CR>", opts)
 map("n", "<Space>bd", "<Cmd>BufferOrderByDirectory<CR>", opts)
 map("n", "<Space>bl", "<Cmd>BufferOrderByLanguage<CR>", opts)
 map("n", "<Space>bw", "<Cmd>BufferOrderByWindowNumber<CR>", opts)
--- buffer close
-map("n", "<leader>x", "<Cmd>BufferClose<CR>", opts)
 
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)
