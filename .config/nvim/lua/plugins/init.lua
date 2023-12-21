@@ -4,6 +4,7 @@ return {
     "Mofiqul/dracula.nvim",
     config = function()
       vim.cmd([[colorscheme dracula-soft]])
+      vim.cmd([[highlight CursorLine guibg=#2e3440]])
     end
   },
   "editorconfig/editorconfig-vim",
@@ -31,6 +32,12 @@ return {
     "RRethy/vim-illuminate",
     config = function()
       require("lualine").setup()
+    end
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function ()
+      require'colorizer'.setup()
     end
   },
   {

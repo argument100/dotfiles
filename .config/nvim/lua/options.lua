@@ -15,6 +15,8 @@ vim.opt.hidden = true -- バッファを切り替えるときに
 
 -- visual
 -- vim.o.ambiwidth = "double"
+vim.opt.termguicolors = true
+
 
 -- search
 vim.o.ignorecase = true
@@ -71,9 +73,6 @@ vim.opt.showmatch = true -- 対応する括弧をハイライト表示
 vim.opt.winblend = 0 -- ウィンドウの不透明度
 vim.opt.pumblend = 0 -- ポップアップメニューの不透明度
 vim.opt.signcolumn = "no" -- サインカラムを表示
-
----- 行番号の色を変更（色は適宜変更してください）
-vim.cmd("highlight LineNr guifg=#8a70ac")
 
 -- カーソルの形状
 vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
