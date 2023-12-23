@@ -16,9 +16,15 @@ return {
         shortcut = {
           { desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
           {
+            desc = " memo",
+            group = "DiagnosticHint",
+            action = "cd ~/obsidian/\nNvimTreeOpen",
+            key = "m",
+          },
+          {
             desc = " dotfiles",
             group = "Number",
-            action = "cd ~/dotfiles/.config/nvim/\nNvimTreeOpen",
+            action = "cd ~/dotfiles/\nNvimTreeOpen",
             key = "d",
           },
         },
