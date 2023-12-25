@@ -12,7 +12,7 @@ return {
   cell_width = 1.0,
   line_height = 1.2,
   color_scheme = 'Chalk',
-  window_background_opacity = 0.95,
+  window_background_opacity = 0.85,
   text_background_opacity = 0.95,
   skip_close_confirmation_for_processes_named = {""},
   window_padding = {
@@ -48,7 +48,6 @@ return {
       { key = "K", mods = "LEADER", action = act.AdjustPaneSize{"Up", 5} },
       { key = "J", mods = "LEADER", action = act.AdjustPaneSize{"Down", 5} },
 
-      -- { key = "x", mods = "CTRL|SHIFT", action = act.ActivateCopyMode },
       { key = "v", mods = "CTRL|SHIFT", action = act.PasteFrom("Clipboard") },
 
       { key = "Enter", mods = "ALT", action = 'DisableDefaultAssignment' },
