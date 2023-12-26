@@ -43,6 +43,8 @@ set("n", "<C-i>", "<cmd>LspInfo<CR>")
   ====================
 --]]
 set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>")
+set("n", "<leader>nr", "<cmd>NvimTreeResize +40<CR>")
+set("n", "<leader>nR", "<cmd>NvimTreeResize -40<CR>")
 
 --[[
   ====================
