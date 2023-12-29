@@ -23,3 +23,4 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 # export NVIM_APPNAME=nvim
 alias vi='nvim'
 
+eval "$(rtx activate zsh)"
