@@ -14,7 +14,7 @@ return {
       org_default_notes_file = '~/orgfiles/refile.org',
       org_archive_location = '~/orgfiles/archive.org',
       win_split_mode = 'float',
-      win_border = 'rounded',
+      win_border = 'single',
       org_agenda_span = 'month',
     })
   end,

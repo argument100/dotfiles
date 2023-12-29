@@ -227,6 +227,7 @@ return {
           { name = "buffer" },
           { name = "path" },
           { name = "luasnip" },
+          { name = "orgmode" },
         },
         snippet = {
           expand = function(args)
