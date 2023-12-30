@@ -72,7 +72,7 @@ vim.opt.showmatch = true -- 対応する括弧をハイライト表示
 -- インタフェース
 vim.opt.winblend = 0 -- ウィンドウの不透明度
 vim.opt.pumblend = 0 -- ポップアップメニューの不透明度
-vim.opt.signcolumn = "no" -- サインカラムを表示
+vim.opt.signcolumn = "yes" -- サインカラムを表示
 
 -- カーソルの形状
 vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
