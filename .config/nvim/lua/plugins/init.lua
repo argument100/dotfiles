@@ -230,6 +230,7 @@ return {
           { name = "path" },
           { name = "luasnip" },
           { name = "orgmode" },
+          { name = "liquid" },
         },
         snippet = {
           expand = function(args)
