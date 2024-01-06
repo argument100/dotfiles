@@ -199,10 +199,47 @@ return {
           -- 補完プラグインであるcmp_nvim_lspをLSPと連携
           local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-          require("lspconfig")[server_name].setup {
-            on_attach = on_attach, --keyバインドなどの設定を登録
+          local lspconfig = require('lspconfig')
+          local node_root_dir = lspconfig.util.root_pattern("package.json")
+          local is_node_repo = node_root_dir(vim.api.nvim_buf_get_name(0)) ~= nil
+          local opts = {}
+          if server_name == "tsserver" then
+            if not is_node_repo then
+              return
+            end
+
+            opts.root_dir = node_root_dir
+          elseif server_name == "eslint" then
+            if not is_node_repo then
+              return
+            end
+
+            opts.root_dir = node_root_dir
+          elseif server_name == "denols" then
+            if is_node_repo then
+              return
+            end
+
+            opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
+            opts.init_options = {
+              lint = true,
+              unstable = true,
+              suggest = {
+                imports = {
+                  hosts = {
+                    ["https://deno.land"] = true,
+                    ["https://cdn.nest.land"] = true,
+                    ["https://crux.land"] = true
+                  }
+                }
+              }
+            }
+          end
+          lspconfig[server_name].setup({
+            opts,
+            on_attach = on_attach,
             capabilities = capabilities, --cmpを連携
-          }
+          })
         end,
       }
     end
