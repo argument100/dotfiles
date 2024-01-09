@@ -203,8 +203,8 @@ return {
             set("n", "<leader>[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
             set("n", "<leaaer>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
           end
-          vim.lsp.handlers["textDocument/publishDiagnostics"] =
-            vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
+          -- vim.lsp.handlers["textDocument/publishDiagnostics"] =
+          --   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
 
           -- 補完プラグインであるcmp_nvim_lspをLSPと連携
           local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -298,6 +298,17 @@ return {
       }
     end
   },
+  {
+    'akinsho/toggleterm.nvim',
+    version = "*",
+    config = function ()
+      require("toggleterm").setup{
+        open_mapping = [[<A-i>]],
+        direction = 'float'
+      }
+    end
+  },
+
   require "plugins.telescope",
 
 }
