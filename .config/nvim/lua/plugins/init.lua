@@ -340,6 +340,12 @@ return {
       }
     end
   },
+  {
+    "ggandor/lightspeed.nvim",
+    config = function ()
+      require("lightspeed").setup{}
+    end
+  },
 
   require "plugins.telescope",
   require "plugins.orgmode",
