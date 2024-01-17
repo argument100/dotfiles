@@ -158,89 +158,91 @@ return {
         },
       })
       require("mason-lspconfig").setup()
+      local on_attach = function(client, bufnr)
+
+        -- LSPが持つフォーマット機能を無効化する
+        client.server_capabilities.documentFormattingProvider = false
+
+        -- 下記ではデフォルトのキーバインドを設定しています
+        -- ほかのLSPプラグインを使う場合（例：Lspsaga）は必要ないこともあります
+
+        -- keyboard shortcut
+        local set = vim.keymap.set
+        set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+        set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+        set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+        set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+        set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+        set("n", "gf", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+        set("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+        set("n", "gn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+        set("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+        set("n", "gh", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+        set("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+        set("n", "g]", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
+        set("n", "g[", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
+
+        set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+        set("n", "<leader>1", "<cmd>Lspsaga finder<CR>")
+        set("n", "<leader>2", "<cmd>Lspsaga rename<CR>")
+        set("n", "<leader>3", "<cmd>Lspsaga code_action<CR>")
+        set("n", "<leader>4", "<cmd>Lspsaga show_line_diagnostics<CR>")
+        set("n", "<leader>5", "<cmd>Lspsaga peek_definition<CR>")
+        set("n", "<leader>[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+        set("n", "<leaaer>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+      end
+
+      -- 補完プラグインであるcmp_nvim_lspをLSPと連携
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      local lspconfig = require('lspconfig')
       require("mason-lspconfig").setup_handlers {
-        function (server_name) -- default handler (optional)
-          local on_attach = function(client, bufnr)
-
-            -- LSPが持つフォーマット機能を無効化する
-            client.server_capabilities.documentFormattingProvider = false
-
-            -- 下記ではデフォルトのキーバインドを設定しています
-            -- ほかのLSPプラグインを使う場合（例：Lspsaga）は必要ないこともあります
-
-            -- keyboard shortcut
-            local set = vim.keymap.set
-            set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-            set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-            set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-            set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
-            set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-            set("n", "gf", "<cmd>lua vim.lsp.buf.formatting()<CR>")
-            set("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-            set("n", "gn", "<cmd>lua vim.lsp.buf.rename()<CR>")
-            set("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-            set("n", "gh", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-            set("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
-            set("n", "g]", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
-            set("n", "g[", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
-
-            set("n", "K", "<cmd>Lspsaga hover_doc<CR>")
-            set("n", "<leader>1", "<cmd>Lspsaga finder<CR>")
-            set("n", "<leader>2", "<cmd>Lspsaga rename<CR>")
-            set("n", "<leader>3", "<cmd>Lspsaga code_action<CR>")
-            set("n", "<leader>4", "<cmd>Lspsaga show_line_diagnostics<CR>")
-            set("n", "<leader>5", "<cmd>Lspsaga peek_definition<CR>")
-            set("n", "<leader>[", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-            set("n", "<leaaer>]", "<cmd>Lspsaga diagnostic_jump_next<CR>")
-          end
-          -- vim.lsp.handlers["textDocument/publishDiagnostics"] =
-          --   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
-
-          -- 補完プラグインであるcmp_nvim_lspをLSPと連携
-          local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-          local lspconfig = require('lspconfig')
+        -- 特定のLSPサーバーに対するカスタム設定
+        ["tsserver"] = function()
           local node_root_dir = lspconfig.util.root_pattern("package.json")
-          local is_node_repo = node_root_dir(vim.api.nvim_buf_get_name(0)) ~= nil
-          local opts = {}
-          if server_name == "tsserver" then
-            if not is_node_repo then
-              return
-            end
+          if node_root_dir(vim.fn.getcwd()) then
+            lspconfig.tsserver.setup({
+              on_attach = on_attach,
+              capabilities = capabilities,
+              root_dir = node_root_dir
+            })
+          end
+        end,
 
-            opts.root_dir = node_root_dir
-          elseif server_name == "eslint" then
-            if not is_node_repo then
-              return
-            end
-
-            opts.root_dir = node_root_dir
-          elseif server_name == "denols" then
-            if is_node_repo then
-              return
-            end
-
-            opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
-            opts.init_options = {
-              lint = true,
-              unstable = true,
-              suggest = {
-                imports = {
-                  hosts = {
-                    ["https://deno.land"] = true,
-                    ["https://cdn.nest.land"] = true,
-                    ["https://crux.land"] = true
+        ["denols"] = function()
+          local node_root_dir = lspconfig.util.root_pattern("package.json")
+          if not node_root_dir(vim.fn.getcwd()) then
+            lspconfig.denols.setup({
+              on_attach = on_attach,
+              capabilities = capabilities,
+              -- Denoに関するその他の設定
+              root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json"),
+              init_options = {
+                lint = true,
+                unstable = true,
+                suggest = {
+                  imports = {
+                    hosts = {
+                      ["https://deno.land"] = true,
+                      ["https://cdn.nest.land"] = true,
+                      ["https://crux.land"] = true
+                    }
                   }
                 }
               }
-            }
+            })
           end
-          lspconfig[server_name].setup({
-            opts,
-            on_attach = on_attach,
-            capabilities = capabilities, --cmpを連携
-          })
         end,
+
+        -- すべてのその他のLSPサーバーに対するデフォルトの設定
+        function(server_name)
+          if server_name ~= "tsserver" and server_name ~= "denols" then
+            lspconfig[server_name].setup({
+              on_attach = on_attach,
+              capabilities = capabilities
+            })
+          end
+        end
       }
     end
   },
