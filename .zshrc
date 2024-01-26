@@ -19,6 +19,10 @@ path=(
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+# Golang
+export PATH=$PATH:/Users/ozo/.local/share/mise/installs/go/1.21.6/go/bin
+export PATH=$PATH:$GOPATH/bin
+
 # Neovim
 # export NVIM_APPNAME=nvim
 alias vi='nvim'
