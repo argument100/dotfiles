@@ -14,7 +14,12 @@ return {
             [[                          ]],
         },
         shortcut = {
-          { desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
+          {
+            desc = " GitHub",
+            group = "@property",
+            action = "cd ~/GitHub/\nNvimTreeOpen",
+            key = "g"
+          },
           {
             desc = " memo",
             group = "DiagnosticHint",
