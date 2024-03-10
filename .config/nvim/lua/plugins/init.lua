@@ -234,9 +234,23 @@ return {
           end
         end,
 
+        ["rust_analyzer"] = function()
+          lspconfig.rust_analyzer.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            settings = {
+              ["rust-analyzer"] = {
+                checkOnSave = {
+                  command = "clippy"
+                }
+              }
+            }
+          })
+        end,
+
         -- すべてのその他のLSPサーバーに対するデフォルトの設定
         function(server_name)
-          if server_name ~= "tsserver" and server_name ~= "denols" then
+          if server_name ~= "tsserver" and server_name ~= "denols" and server_name ~= rust_analyzer then
             lspconfig[server_name].setup({
               on_attach = on_attach,
               capabilities = capabilities
