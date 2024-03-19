@@ -1,5 +1,9 @@
 return {
   require "plugins.dashboard",
+  {
+    'wakatime/vim-wakatime',
+    lazy = false
+  },
   { -- colorscheme
     "Mofiqul/dracula.nvim",
     config = function()
